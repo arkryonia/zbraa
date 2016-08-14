@@ -150,6 +150,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# FIXTURE
+FIXTURE_DIRS = (
+    str(APPS_DIR.path('fixtures')),
+)
+
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
 # Local time zone for this installation. Choices can be found here:
@@ -161,13 +166,13 @@ TIME_ZONE = 'Africa/Porto-Novo'
 # Static adn media files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = ROOT_DIR('staticfiles')
+STATIC_ROOT = str(ROOT_DIR.path('staticfiles'))
 STATIC_URL = '/static/'
 
-STATIC_ROOT = ROOT_DIR('media')
-STATIC_URL = '/static/'
+MEDIA_ROOT = str(ROOT_DIR.path('media'))
+MADIA_URL = '/media/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
-    APPS_DIR('static'),
+    str(APPS_DIR.path('static')),
 ]
