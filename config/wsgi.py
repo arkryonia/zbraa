@@ -1,9 +1,9 @@
-# @Author: Hodonou SOUNTON <drxos>
-# @Date:   2016-08-14T01:48:08+01:00
-# @Email:  sounton@gmail.com
-# @Project: djangoku
+# @Author: drxos
+# @Date:   2016-08-14T13:17:56+01:00
+# @Email:  drxost@gmail.com
+# @Project: zbraaku
 # @Last modified by:   drxos
-# @Last modified time: 2016-08-14T02:21:36+01:00
+# @Last modified time: 2016-08-14T13:18:01+01:00
 # @License: Copyright (c) 2016 The MIT License (MIT)
 
 
@@ -20,7 +20,9 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
+from whitenoise.django import DjangoWhiteNoise
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 
 application = get_wsgi_application()
+application = DjangoWhiteNoise(application)

@@ -57,6 +57,7 @@ DJANGO_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     # Disable Django's own staticfiles handling in favour of WhiteNoise, for
     # greater consistency between gunicorn and `./manage.py runserver`. See:
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
@@ -67,11 +68,15 @@ DJANGO_APPS = (
 ### Vendor applications
 VENDOR_APPS = (
     'django_extensions',
+    'crispy_forms',  # Form layouts
+    'allauth',  # registration
+    'allauth.account',  # registration
+    'allauth.socialaccount',  # registration
 )
 
 ### Local applications
 LOCAL_APPS = (
-
+    'zbraa.users',
 )
 
 INSTALLED_APPS = DJANGO_APPS + VENDOR_APPS + LOCAL_APPS
@@ -97,7 +102,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ROOT_DIR('templates'),],
+        'DIRS': [str(APPS_DIR.path('templates')),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -166,13 +171,61 @@ TIME_ZONE = 'Africa/Porto-Novo'
 # Static adn media files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = str(ROOT_DIR.path('staticfiles'))
+STATIC_ROOT = ROOT_DIR('staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = str(ROOT_DIR.path('media'))
-MADIA_URL = '/media/'
+MEDIA_ROOT = ROOT_DIR('media')
+MEDIA_URL = '/media/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     str(APPS_DIR.path('static')),
 ]
+
+CACHES = {
+    'default': env.cache(),
+    'redis': env.cache('REDIS_URL')
+}
+
+
+# EMAIL CONFIGURATION
+# ------------------------------------------------------------------------------
+EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+
+# MANAGER CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS =[("drxos", "sounton@gmail.com"),]
+
+# Location of root django.contrib.admin URL, use {% raw %}{% url 'admin:index' %}{% endraw %}
+ADMIN_URL = r'^admin/'
+
+# Others
+# See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+# Some really nice defaults
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
+ACCOUNT_ADAPTER = 'zbraa.users.adapters.AccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'zbraa.users.adapters.SocialAccountAdapter'
+
+# Custom user app defaults
+# Select the correct user model
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = 'users:redirect'
+LOGIN_URL = 'account_login'
+
+# SLUGLIFIER
+AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
+
+SITE_ID = 1
