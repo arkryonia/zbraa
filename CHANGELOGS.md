@@ -1,11 +1,13 @@
 Changelog
 =========
 
-%%version%% (unreleased)
-------------------------
+0.2.1 (2016-08-15)
+------------------
 
 New
 ~~~
+
+- CHANGELOGS. [Hodonou SOUNTON]
 
 - Users application and whitenoise. [Hodonou SOUNTON]
 
