@@ -11,8 +11,13 @@ New
 
 - Users application and whitenoise. [Hodonou SOUNTON]
 
-0.2.0 (2016-08-14)
-------------------
+Fix
+~~~
+
+- Typo in spelling my name in comment. !0.2.3. [Hodonou SOUNTON]
+
+Other
+~~~~~
 
 - Gitchangelog implemented. [Hodonou SOUNTON]
 
