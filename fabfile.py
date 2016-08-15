@@ -8,7 +8,7 @@
 
 
 
-from fabric.api import local
+from fabric.api import *
 
 
 def hello(name="world", gender="M"):
