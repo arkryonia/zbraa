@@ -9,6 +9,8 @@ New
 
 - Permorfing the fabfile: cometics. [Hodonou SOUNTON]
 
+- Permorfing the fabfile: cometics. [Hodonou SOUNTON]
+
 0.2.1 (2016-08-15)
 ------------------
 

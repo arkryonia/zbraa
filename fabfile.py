@@ -18,4 +18,4 @@ def ci(act='new', aud='dev', msg='empty', tag='wip'):
     local('git add .')
     local('git commit -m "%s: %s: %s: %s"' % (act, aud, msg, tag))
     local('gitchangelog > CHANGELOGS.md && git commit --amend')
-    run('print "Hello!"')
+    local('print "Hello!"')
