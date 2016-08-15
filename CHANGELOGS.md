@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3.0 (2016-08-15)
+0.1.0 (2016-08-15)
 ------------------
 
 New
@@ -12,12 +12,6 @@ New
 - Permorfing the fabfile: cometics. [Hodonou SOUNTON]
 
 - Permorfing the fabfile: cometics. [Hodonou SOUNTON]
-
-0.2.1 (2016-08-15)
-------------------
-
-New
-~~~
 
 - CHANGELOGS. [Hodonou SOUNTON]
 
