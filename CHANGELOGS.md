@@ -28,5 +28,3 @@ Other
 - Gitchangelog implemented. [Hodonou SOUNTON]
 
 - Initial commit. [Hodonou SOUNTON]
-
-
