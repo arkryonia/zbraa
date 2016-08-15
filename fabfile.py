@@ -25,8 +25,9 @@ env.user = "root"
 def ci(act='new', aud='dev', msg='empty', tag='wip'):
     local('git add .')
     local('git commit -m "%s: %s: %s !%s"' % (act, aud, msg, tag))
-    local('git add .')
-    local('gitchangelog > CHANGELOGS.md && git commit --amend')
+    local('git add CHANGELOGS.md')
+    local('gitchangelog > CHANGELOGS.md')
+    local('git commit -m "CHANGELOGS updated!"')
 
 
 
